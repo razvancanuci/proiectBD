@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        
+        <style>
+        
+        @font-face {
+            font-family: 'SansationLight';
+            src: url('./FontSansationLight/SansationLight.eot');
+            src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+        }
+        * {box-sizing: border-box}
+        
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'SansationLight' !important;
+            background: rgb(22,22,22);
+        }
+        
+        /* Style tab links */
+        .tablink {
+            font-weight: bold;
+            font-family: 'SansationLight' !important;
+            background-color: #557;
+            color: azure;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 12px 12px;
+            font-size: 17px;
+            width: 20%;
+        }
+        
+        .tablink:hover {
+            background-color: #579;
+        }
+        .tabcontent {
+            color: white;
+            padding: 100px 20px;
+            height: 100%;
+        }
+        
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            border-color: white;
+            text-align: center;
+        }
+        th, td {
+            padding: 15px;
+        }
+        
+        .radiotext {
+            margin: 10px 10px 0px 0px;
+        }
+        
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            padding: 100px 20px;
+            height: 100%;
+        }
+        .tab{
+            tab-size: 20;
+        }
+        
+        
+        #Consilieri {background-color: rgb(22, 22, 22);}
+        #Partide {background-color: rgb(22,22,22);}
+        #Comisii {background-color: rgb(22,22,22);}
+        #Pontaje {background-color: rgb(22,22,22);}
+        </style>
+</head>
+<body>
+    <div id="Consilieri" class="tabcontent">
+        <center>
+              <br>
+              <h1 id="h3">Editeaza detalii</h1>
+          <br><br><br>
+          <form class="was-validated" method="POST" action="/editDetails">
+           <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="validationServer01">Numar inmatriculare</label>
+                <input name="nr_inmatriculare" type="text" class="form-control is-valid" id="validationServer01" value="{{details['nr_inmatriculare']}}" readonly>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="validationServer01">Model</label>
+                <input name="model" type="text" class="form-control is-valid" id="validationServer01" value="{{details['model']}}" required>
+              </div>
+              <br>
+              <div class="col-md-6 mb-3">
+                <label for="validationServer01">Serie sasiu</label>
+                <input name="serie_sasiu" type="text" class="form-control is-valid" id="validationServer01" value="{{details['serie_sasiu']}}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="validationServer01">Valabilitate itp</label>
+                <input name="valabilitate_itp" type="number" class="form-control is-valid" id="validationServer01" value="{{details['valabilitate_itp']}}">
+            </div>
+            <br>
+            <div class="col-md-6 mb-3">
+                <label for="validationServer01">An fabricatie</label>
+                <select name="an_fabricatie" class="custom-select d-block my-3">
+                  <option value="{{details['an_fabricatie']}}">{{details['an_fabricatie']}}</option>
+                  {%for i in range(1990,2022)%}
+                  {% if i != details['an_fabricatie'] %}
+                  <option value={{i}}>{{i}}</option>
+                  {% endif %}
+                  {% endfor %}
+                  
+                </select>
+                </div>
+           </div>
+               <button class="btn btn-primary" type="submit">Editeaza detalii</button>
+          </form>
+          </center>
+</body>
+</html>
